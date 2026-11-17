@@ -1,575 +1,78 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mellara Essence | Perfumaria e Beleza</title>
-
-<style>
-:root {
---brown:#382820;
---gold:#bd9a65;
---cream:#f7f0e7;
---paper:#fffdf9;
---text:#514237;
-}
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,sans-serif;background:var(--cream);color:var(--text)}
-.top{background:var(--brown);color:#ead8bd;text-align:center;padding:10px;font-size:11px;letter-spacing:2px}
-header{background:var(--brown);text-align:center;padding:28px 10px;color:white}
-.logo{color:#e4c99e;font:35px Georgia,serif;letter-spacing:4px}
-.tag{margin-top:8px;font-size:10px;letter-spacing:3px}
-nav{display:flex;justify-content:center;flex-wrap:wrap;gap:22px;padding:16px;background:white}
-nav a{color:var(--brown);text-decoration:none;font-size:13px}
-.hero{min-height:390px;display:flex;align-items:center;padding:45px 9%;color:white;background:linear-gradient(90deg,#382820e8,#38282035),url("https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=1600&q=85") center/cover}
-.hero div{max-width:520px}
-.hero h1{font:clamp(38px,6vw,55px) Georgia,serif;margin:12px 0}
-.hero p{line-height:1.7}
-.btn{display:inline-block;border:0;background:var(--gold);color:white;padding:12px 18px;border-radius:3px;text-decoration:none;cursor:pointer;font-weight:bold}
-.section{padding:48px 6%}
-.heading{text-align:center;margin-bottom:28px}
-.heading h2{font:30px Georgia,serif;color:var(--brown)}
-#search{display:block;width:min(570px,100%);margin:0 auto 22px;padding:14px;border:1px solid #dfd1bf;border-radius:4px}
-.filters{display:flex;justify-content:center;flex-wrap:wrap;gap:9px;margin-bottom:28px}
-.filters button{border:1px solid var(--gold);background:transparent;color:var(--brown);padding:9px 14px;border-radius:25px;cursor:pointer}
-.filters button.active{background:var(--brown);color:white}
-.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:20px}
-.product{background:white;border:1px solid #eadfce;border-radius:5px;overflow:hidden;text-align:center}
-.product img{width:100%;height:220px;object-fit:cover;background:#eee5d9}
-.product-info{padding:15px}
-.product h3{font:18px Georgia,serif;color:var(--brown)}
-.product p{font-size:12px;color:#88786a;line-height:1.5}
-.price{color:#9a7547;font-weight:bold;margin:12px}
-.actions{display:flex;gap:7px;justify-content:center;flex-wrap:wrap}
-.promo{background:#e9dfd2;text-align:center;padding:38px 15px}
-.cart{background:#eee4d8;padding:35px 6%;text-align:center}
-.cart ul{max-width:650px;margin:20px auto;text-align:left;padding:0;list-style:none}
-.cart li{padding:10px;border-bottom:1px solid #d7c7b5}
-footer{background:var(--brown);color:#e8d9c7;text-align:center;padding:30px 15px;line-height:2;font-size:12px}
-footer strong{color:#e4c99e;font:24px Georgia,serif;letter-spacing:3px}
-.whatsapp{position:fixed;bottom:20px;right:20px;background:#25D366;color:white;padding:14px 18px;border-radius:30px;text-decoration:none;font-weight:bold;z-index:10}
-.admin-link{display:inline-block;color:#e4c99e;border:1px solid var(--gold);padding:8px 15px;text-decoration:none;border-radius:4px;cursor:pointer;background:transparent}
-.modal{display:none;position:fixed;inset:0;background:#000b;z-index:100;padding:15px;overflow:auto}
-.modal.show{display:flex;align-items:center;justify-content:center}
-.panel{background:var(--paper);padding:25px;border-radius:8px;width:100%;max-width:650px;max-height:95vh;overflow:auto}
-.login{max-width:380px;text-align:center}
-.panel h2{font:27px Georgia,serif;color:var(--brown)}
-.field{text-align:left;margin:13px 0}
-.field label{display:block;font-size:13px;font-weight:bold;margin-bottom:6px}
-.field input,.field select,.field textarea{width:100%;padding:12px;border:1px solid #d9cbbb;border-radius:4px}
-.field textarea{min-height:70px}
-.close{float:right;border:0;background:none;font-size:25px;cursor:pointer}
-.admin-item{display:flex;gap:10px;align-items:center;background:#f4ede4;padding:10px;margin:10px 0;flex-wrap:wrap}
-.admin-item img{width:60px;height:60px;object-fit:cover}
-.admin-item .details{flex:1;min-width:100px}
-.admin-item button{padding:8px;border:0;cursor:pointer}
-.red{background:#a13d32;color:white}
-.dark{background:var(--brown);color:white}
-.gold{background:var(--gold);color:white}
-.hidden{display:none!important}
-@media(max-width:600px){
-.logo{font-size:27px}
-.hero{min-height:340px;padding:30px 7%}
-.section{padding:35px 5%}
-}
-</style>
-</head>
-
-<body>
-
-<div class="top">
-BELEZA, ELEGÂNCIA E PERFUMES PARA TODOS OS MOMENTOS
-</div>
-
-<header>
-<div class="logo">MELLARA ESSENCE</div>
-<div class="tag">PERFUMARIA • BELEZA • SOFISTICAÇÃO</div>
-</header>
-
-<nav>
-<a href="#inicio">Início</a>
-<a href="#produtos">Produtos</a>
-<a href="#promocoes">Promoções</a>
-<a href="#carrinho">Sacola</a>
-<a href="#contato">Contato</a>
-</nav>
-
-<section class="hero" id="inicio">
-<div>
-<p>DESCUBRA SUA ESSÊNCIA</p>
-<h1>Elegância que encanta. Fragrâncias que marcam.</h1>
-<p>Encontre perfumes, cosméticos e produtos de beleza selecionados especialmente para você.</p>
-<a href="#produtos" class="btn">EXPLORAR PRODUTOS</a>
-</div>
-</section>
-
-<section class="section" id="produtos">
-<div class="heading">
-<h2>Nossa Coleção</h2>
-<p>Encontre o produto perfeito para você.</p>
-</div>
-
-<input id="search" placeholder="Pesquisar perfumes e produtos...">
-
-<div class="filters">
-<button class="active" onclick="filtrar('todos',this)">Todos</button>
-<button onclick="filtrar('feminino',this)">Feminino</button>
-<button onclick="filtrar('masculino',this)">Masculino</button>
-<button onclick="filtrar('beleza',this)">Beleza</button>
-</div>
-
-<div class="products" id="listaProdutos"></div>
-</section>
-
-<section class="promo" id="promocoes">
-<h2 id="promoTitulo">Ofertas especiais Mellara Essence</h2>
-<p id="promoTexto">Descubra nossas novidades e produtos selecionados.</p>
-<a href="#produtos" class="btn">VER COLEÇÃO</a>
-</section>
-
-<section class="cart" id="carrinho">
-<h2>Minha Sacola</h2>
-<p>Seus produtos selecionados:</p>
-<ul id="itensCarrinho">
-<li>Sua sacola está vazia.</li>
-</ul>
-<p id="total"></p>
-<button class="btn" onclick="finalizarCompra()">FINALIZAR PELO WHATSAPP</button>
-</section>
-
-<footer id="contato">
-<strong>MELLARA ESSENCE</strong>
-<p>Perfumaria e Beleza</p>
-<p>Elegância em cada detalhe.</p>
-<p>© 2026 Mellara Essence - Todos os direitos reservados.</p>
-<br>
-<button class="admin-link" onclick="abrirLogin()">ÁREA DO ADMINISTRADOR</button>
-</footer>
-
-<a class="whatsapp" id="whatsappLink" href="#" target="_blank">WhatsApp</a>
-
-<!-- LOGIN ADMINISTRADOR -->
-<div class="modal" id="loginModal">
-<div class="panel login">
-<button class="close" onclick="fecharLogin()">×</button>
-<h2>MELLARA ESSENCE</h2>
-<p>Área exclusiva do administrador</p>
-
-<form onsubmit="entrarAdmin(event)">
-<div class="field">
-<label>Login</label>
-<input id="usuario" autocomplete="username" required>
-</div>
-<div class="field">
-<label>Senha</label>
-<input id="senha" type="password" autocomplete="current-password" required>
-</div>
-<p id="erro" style="color:red"></p>
-<button class="btn" type="submit" style="width:100%">ENTRAR NO ADM</button>
-</form>
-</div>
-</div>
-
-<!-- PAINEL ADMINISTRATIVO -->
-<div class="modal" id="adminModal">
-<div class="panel">
-<button class="close" onclick="sairAdmin()">×</button>
-
-<h2>Painel Administrativo</h2>
-<p>Bem-vindo à administração da Mellara Essence.</p>
-
-<hr>
-
-<h3>Cadastrar ou editar produto</h3>
-
-<div class="field">
-<label>Nome do produto</label>
-<input id="nomeProduto" placeholder="Nome do perfume">
-</div>
-
-<div class="field">
-<label>Descrição</label>
-<textarea id="descricaoProduto"></textarea>
-</div>
-
-<div class="field">
-<label>Categoria</label>
-<select id="categoriaProduto">
-<option value="feminino">Feminino</option>
-<option value="masculino">Masculino</option>
-<option value="beleza">Beleza</option>
-</select>
-</div>
-
-<div class="field">
-<label>Preço (R$)</label>
-<input id="precoProduto" type="number" min="0" step="0.01">
-</div>
-
-<div class="field">
-<label>Link da imagem</label>
-<input id="imagemProduto" type="url" placeholder="https://...">
-</div>
-
-<div class="field">
-<label>Link de compra</label>
-<input id="linkProduto" type="url" placeholder="https://...">
-</div>
-
-<button class="btn dark" onclick="salvarProduto()">SALVAR PRODUTO</button>
-<button class="btn" onclick="limparFormulario()">LIMPAR</button>
-
-<hr>
-
-<h3>Promoção da loja</h3>
-<div class="field">
-<label>Título da promoção</label>
-<input id="novoPromoTitulo">
-</div>
-<div class="field">
-<label>Descrição da promoção</label>
-<input id="novoPromoTexto">
-</div>
-<button class="btn" onclick="salvarPromocao()">ATUALIZAR PROMOÇÃO</button>
-
-<hr>
-
-<h3>Produtos cadastrados</h3>
-<div id="listaAdmin"></div>
-
-<hr>
-<button class="btn red" onclick="sairAdmin()">SAIR DO ADMINISTRADOR</button>
-</div>
-</div>
-
-<script>
-
-/* CONFIGURAÇÕES */
-
-const ADMIN_LOGIN = "melara essence";
-const ADMIN_SENHA = "V9!qR4#zN8@pL2$xT7mK";
-
-// Substitua pelo número da loja com DDD e código 55.
-const WHATSAPP = "55SEUNUMERO";
-
-let produtos = JSON.parse(localStorage.getItem("mellaraProdutos")) || [];
-let carrinho = [];
-let editando = null;
-
-/* FUNÇÕES GERAIS */
-
-function salvarBanco(){
-localStorage.setItem("mellaraProdutos",JSON.stringify(produtos));
-}
-
-function dinheiro(valor){
-return Number(valor).toLocaleString("pt-BR",{
-style:"currency",currency:"BRL"
-});
-}
-
-function escapar(valor){
-return String(valor ?? "").replace(/[&<>"']/g,c=>({
-"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-}[c]));
-}
-
-function urlValida(url){
-try{
-let u=new URL(url);
-return ["http:","https:"].includes(u.protocol);
-}catch(e){return false;}
-}
-
-/* VITRINE */
-
-function renderizar(){
-let busca=document.getElementById("search").value.toLowerCase();
-let lista=document.getElementById("listaProdutos");
-
-let filtrados=produtos.filter(p=>{
-let categoria=document.querySelector(".filters button.active").dataset?.categoria;
-return (p.nome+" "+p.descricao).toLowerCase().includes(busca);
-});
-
-if(!filtrados.length){
-lista.innerHTML="<p>Nenhum produto cadastrado ou encontrado.</p>";
-return;
-}
-
-lista.innerHTML=filtrados.map(p=>`
-<div class="product">
-<img src="${escapar(p.imagem)}" alt="${escapar(p.nome)}"
-onerror="this.src='https://placehold.co/400x400/f7f0e7/382820?text=Mellara'">
-<div class="product-info">
-<h3>${escapar(p.nome)}</h3>
-<p>${escapar(p.descricao)}</p>
-<div class="price">${dinheiro(p.preco)}</div>
-<div class="actions">
-<button class="btn" onclick="adicionar(${Number(p.id)})">Adicionar</button>
-<button class="btn dark" onclick="comprar(${Number(p.id)})">Comprar</button>
-</div>
-</div>
-</div>
-`).join("");
-}
-
-function filtrar(categoria,botao){
-document.querySelectorAll(".filters button").forEach(b=>b.classList.remove("active"));
-botao.classList.add("active");
-
-let busca=document.getElementById("search").value.toLowerCase();
-let lista=document.getElementById("listaProdutos");
-
-let filtrados=produtos.filter(p=>
-(categoria==="todos" || p.categoria===categoria) &&
-(p.nome+" "+p.descricao).toLowerCase().includes(busca)
-);
-
-lista.innerHTML=filtrados.length ? filtrados.map(p=>`
-<div class="product">
-<img src="${escapar(p.imagem)}" alt="${escapar(p.nome)}"
-onerror="this.src='https://placehold.co/400x400/f7f0e7/382820?text=Mellara'">
-<div class="product-info">
-<h3>${escapar(p.nome)}</h3>
-<p>${escapar(p.descricao)}</p>
-<div class="price">${dinheiro(p.preco)}</div>
-<div class="actions">
-<button class="btn" onclick="adicionar(${Number(p.id)})">Adicionar</button>
-<button class="btn dark" onclick="comprar(${Number(p.id)})">Comprar</button>
-</div>
-</div>
-</div>`).join(""):"<p>Nenhum produto encontrado.</p>";
-}
-
-document.getElementById("search").addEventListener("input",()=>{
-document.querySelector(".filters button.active").click();
-});
-
-/* CARRINHO */
-
-function adicionar(id){
-let p=produtos.find(x=>x.id===id);
-if(!p)return;
-carrinho.push(p);
-atualizarCarrinho();
-alert("Produto adicionado à sacola!");
+carrinho = carrinho.filter(p => String(p.id) !== String(id));
+  salvarCarrinho();
+  atualizarCarrinho();
 }
 
 function atualizarCarrinho(){
-let lista=document.getElementById("itensCarrinho");
+  document.getElementById("cartCount").textContent =
+    carrinho.reduce((s,p)=>s+p.quantidade,0);
 
-if(!carrinho.length){
-lista.innerHTML="<li>Sua sacola está vazia.</li>";
-document.getElementById("total").textContent="";
-return;
-}
+  document.getElementById("cartItems").innerHTML =
+    carrinho.length ? carrinho.map(p=>`
+      <div class="cart-item">
+        ${escapar(p.nome)} × ${p.quantidade}
+        <button onclick="removerCarrinho('${escapar(p.id)}')">Remover</button>
+      </div>
+    `).join("") : "<p>Sua sacola está vazia.</p>";
 
-lista.innerHTML=carrinho.map((p,i)=>`
-<li>${escapar(p.nome)} - ${dinheiro(p.preco)}
-<button onclick="remover(${i})">Remover</button>
-</li>`).join("");
-
-let total=carrinho.reduce((s,p)=>s+Number(p.preco),0);
-document.getElementById("total").textContent="Total: "+dinheiro(total);
-}
-
-function remover(i){
-carrinho.splice(i,1);
-atualizarCarrinho();
-}
-
-function comprar(id){
-let p=produtos.find(x=>x.id===id);
-if(!p)return;
-if(p.link && urlValida(p.link)){
-window.open(p.link,"_blank","noopener");
-}else{
-enviarWhats("Olá! Tenho interesse no produto: "+p.nome);
-}
-}
-
-function enviarWhats(mensagem){
-if(WHATSAPP.includes("SEUNUMERO")){
-alert("Configure o número de WhatsApp no código HTML.");
-return;
-}
-window.open("https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(mensagem),"_blank");
+  const total = carrinho.reduce(
+    (s,p)=>s+(Number(p.preco)||0)*p.quantidade,0
+  );
+  document.getElementById("cartTotal").textContent = moeda(total);
 }
 
 function finalizarCompra(){
-if(!carrinho.length){
-alert("Sua sacola está vazia!");
-return;
-}
-let mensagem="Olá! Gostaria de comprar:\n"+
-carrinho.map(p=>p.nome+" - "+dinheiro(p.preco)).join("\n");
-enviarWhats(mensagem);
-}
+  if(!carrinho.length){
+    alert("Sua sacola está vazia.");
+    return;
+  }
 
-/* LOGIN ADM */
+  let mensagem = "Olá! Gostaria de fazer um pedido na Mellara Essence:\n\n";
+  carrinho.forEach(p=>{
+    mensagem += `${p.nome} - Quantidade: ${p.quantidade}\n`;
+  });
 
-function abrirLogin(){
-document.getElementById("loginModal").classList.add("show");
-}
+  mensagem += "\nTotal: R$ " + moeda(
+    carrinho.reduce((s,p)=>s+(Number(p.preco)||0)*p.quantidade,0)
+  );
 
-function fecharLogin(){
-document.getElementById("loginModal").classList.remove("show");
-}
-
-function entrarAdmin(e){
-e.preventDefault();
-
-let user=document.getElementById("usuario").value.trim().toLowerCase();
-let pass=document.getElementById("senha").value;
-
-if(user===ADMIN_LOGIN && pass===ADMIN_SENHA){
-document.getElementById("erro").textContent="";
-document.getElementById("loginModal").classList.remove("show");
-document.getElementById("adminModal").classList.add("show");
-document.getElementById("senha").value="";
-listarAdmin();
-}else{
-document.getElementById("erro").textContent="Login ou senha incorretos!";
-}
+  window.open(
+    "https://wa.me/"+WHATSAPP+"?text="+encodeURIComponent(mensagem),
+    "_blank"
+  );
 }
 
-function sairAdmin(){
-document.getElementById("adminModal").classList.remove("show");
-limparFormulario();
+function mostrarPromocao(){
+  const texto = localStorage.getItem("mellaraPromo");
+  const elemento = document.getElementById("promo");
+
+  if(texto){
+    elemento.textContent = texto;
+    elemento.style.display = "block";
+  }else{
+    elemento.style.display = "none";
+  }
 }
 
-/* CADASTRO DE PRODUTOS */
+document.getElementById("busca").addEventListener("input",renderizarProdutos);
+document.getElementById("categoria").addEventListener("change",renderizarProdutos);
 
-function salvarProduto(){
-let nome=document.getElementById("nomeProduto").value.trim();
-let descricao=document.getElementById("descricaoProduto").value.trim();
-let categoria=document.getElementById("categoriaProduto").value;
-let preco=Number(document.getElementById("precoProduto").value);
-let imagem=document.getElementById("imagemProduto").value.trim();
-let link=document.getElementById("linkProduto").value.trim();
+window.addEventListener("storage",event=>{
+  if(["mellaraProdutos","mellaraPromo"].includes(event.key)){
+    renderizarProdutos();
+    mostrarPromocao();
+  }
 
-if(!nome || !Number.isFinite(preco) || preco<0){
-alert("Preencha o nome e o preço corretamente.");
-return;
-}
-
-if(imagem && !urlValida(imagem)){
-alert("Informe um link de imagem válido.");
-return;
-}
-
-if(link && !urlValida(link)){
-alert("Informe um link de compra válido.");
-return;
-}
-
-let produto={
-id:editando || Date.now(),
-nome,descricao,categoria,preco,imagem,link
-};
-
-if(editando){
-produtos=produtos.map(p=>p.id===editando?produto:p);
-}else{
-produtos.push(produto);
-}
-
-salvarBanco();
-limparFormulario();
-listarAdmin();
-renderizar();
-alert("Produto salvo com sucesso!");
-}
-
-function editarProduto(id){
-let p=produtos.find(x=>x.id===id);
-if(!p)return;
-
-editando=id;
-document.getElementById("nomeProduto").value=p.nome;
-document.getElementById("descricaoProduto").value=p.descricao;
-document.getElementById("categoriaProduto").value=p.categoria;
-document.getElementById("precoProduto").value=p.preco;
-document.getElementById("imagemProduto").value=p.imagem;
-document.getElementById("linkProduto").value=p.link;
-document.getElementById("nomeProduto").scrollIntoView({behavior:"smooth"});
-}
-
-function excluirProduto(id){
-if(!confirm("Deseja excluir este produto?"))return;
-
-produtos=produtos.filter(p=>p.id!==id);
-salvarBanco();
-listarAdmin();
-renderizar();
-}
-
-function limparFormulario(){
-editando=null;
-["nomeProduto","descricaoProduto","precoProduto","imagemProduto","linkProduto"].forEach(id=>{
-document.getElementById(id).value="";
+  if(event.key === "mellaraCarrinho"){
+    carrinho = carregarCarrinho();
+    atualizarCarrinho();
+  }
 });
-document.getElementById("categoriaProduto").value="feminino";
-}
 
-function listarAdmin(){
-document.getElementById("listaAdmin").innerHTML=produtos.length
-? produtos.map(p=>`
-<div class="admin-item">
-<img src="${escapar(p.imagem)}" onerror="this.src='https://placehold.co/100x100'">
-<div class="details">
-<strong>${escapar(p.nome)}</strong><br>
-<small>${dinheiro(p.preco)}</small>
-</div>
-<button class="gold" onclick="editarProduto(${Number(p.id)})">Editar</button>
-<button class="red" onclick="excluirProduto(${Number(p.id)})">Excluir</button>
-</div>`).join("")
-:"<p>Nenhum produto cadastrado.</p>";
-}
-
-/* PROMOÇÕES */
-
-function salvarPromocao(){
-let titulo=document.getElementById("novoPromoTitulo").value.trim();
-let texto=document.getElementById("novoPromoTexto").value.trim();
-
-if(!titulo){
-alert("Digite um título para a promoção.");
-return;
-}
-
-localStorage.setItem("mellaraPromo",JSON.stringify({titulo,texto}));
-aplicarPromocao();
-alert("Promoção atualizada!");
-}
-
-function aplicarPromocao(){
-let p=JSON.parse(localStorage.getItem("mellaraPromo")||"null");
-if(p){
-document.getElementById("promoTitulo").textContent=p.titulo;
-document.getElementById("promoTexto").textContent=p.texto;
-document.getElementById("novoPromoTitulo").value=p.titulo;
-document.getElementById("novoPromoTexto").value=p.texto;
-}
-}
-
-/* INICIALIZAÇÃO */
-
-document.getElementById("whatsappLink").onclick=function(e){
-if(WHATSAPP.includes("SEUNUMERO")){
-e.preventDefault();
-alert("Configure o WhatsApp no código.");
-}else{
-this.href="https://wa.me/"+WHATSAPP;
-}
-};
-
-document.getElementById("novoPromoTitulo").value="";
-document.getElementById("novoPromoTexto").value="";
-aplicarPromocao();
-renderizar();
-
+renderizarProdutos();
+mostrarPromocao();
+atualizarCarrinho();
 </script>
+
 </body>
-  </html>
+</html>
