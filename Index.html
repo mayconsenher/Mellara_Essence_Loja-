@@ -1,0 +1,28 @@
+    alert("Sua sacola está vazia!");
+    return;
+  }
+
+  let mensagem = "Olá! Gostaria de fazer este pedido na Mellara Essence:\n\n";
+
+  carrinho.forEach(p => {
+    mensagem += `${p.quantidade}x ${p.nome} - ${moeda(p.preco * p.quantidade)}\n`;
+  });
+
+  const total = carrinho.reduce((s,p) => s + p.preco * p.quantidade, 0);
+  mensagem += `\nTotal: ${moeda(total)}`;
+  mensagem += "\n\nAguardo confirmação. Obrigado!";
+
+  window.open(
+    "https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(mensagem),
+    "_blank"
+  );
+}
+
+document.getElementById("ano").textContent = new Date().getFullYear();
+
+renderizarProdutos();
+atualizarCarrinho();
+</script>
+
+</body>
+</html>
