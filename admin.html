@@ -1,0 +1,111 @@
+  document.getElementById("ativo").checked = p.ativo !== false;
+  document.getElementById("formTitulo").textContent = "Editar produto";
+
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function excluirProduto(id){
+  if(!confirm("Deseja realmente excluir este produto?")) return;
+
+  const lista = produtos().filter(p=>String(p.id)!==String(id));
+  guardar(lista);
+
+  listarProdutos();
+  atualizarDashboard();
+  alert("Produto excluído!");
+}
+
+function limparFormulario(){
+  document.getElementById("produtoId").value = "";
+  document.getElementById("nome").value = "";
+  document.getElementById("descricao").value = "";
+  document.getElementById("categoria").value = "Perfumes";
+  document.getElementById("preco").value = "";
+  document.getElementById("imagem").value = "";
+  document.getElementById("link").value = "";
+  document.getElementById("estoqueProduto").value = "0";
+  document.getElementById("ativo").checked = true;
+  document.getElementById("formTitulo").textContent = "Cadastrar produto";
+}
+
+function escapar(valor){
+  return String(valor).replace(/[&<>"']/g,c=>({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    '"':"&quot;",
+    "'":"&#39;"
+  }[c]));
+}
+
+function listarProdutos(){
+  const busca = document.getElementById("filtro").value.toLowerCase();
+
+  const lista = produtos().filter(p=>
+    (p.nome||"").toLowerCase().includes(busca)
+  );
+
+  const area = document.getElementById("listaAdmin");
+
+  if(!lista.length){
+    area.innerHTML = "<p>Nenhum produto cadastrado.</p>";
+    return;
+  }
+
+  area.innerHTML = lista.map(p=>`
+    <div class="product-row">
+      <img src="${escapar(p.imagem||"")}"
+        onerror="this.style.display='none'" alt="">
+      <div class="product-name">
+        <strong>${escapar(p.nome)}</strong><br>
+        ${moeda(p.preco)}<br>
+        <small>Estoque: ${Number(p.estoque)||0} |
+        ${p.ativo!==false?"Ativo":"Inativo"}</small>
+      </div>
+      <div class="actions">
+        <button class="gold"
+          onclick="editarProduto('${escapar(String(p.id))}')">
+          Editar
+        </button>
+        <button class="dark"
+          onclick="excluirProduto('${escapar(String(p.id))}')">
+          Excluir
+        </button>
+      </div>
+    </div>
+  `).join("");
+}
+
+function atualizarDashboard(){
+  const lista = produtos();
+
+  document.getElementById("totalProdutos").textContent = lista.length;
+
+  document.getElementById("ativos").textContent =
+    lista.filter(p=>p.ativo!==false).length;
+
+  document.getElementById("estoque").textContent =
+    lista.reduce((s,p)=>s+(Number(p.estoque)||0),0);
+
+  document.getElementById("valor").textContent =
+    moeda(lista.reduce((s,p)=>
+      s+(Number(p.preco)||0)*(Number(p.estoque)||0),0
+    ));
+}
+
+function salvarPromocao(){
+  const texto = document.getElementById("promocao").value.trim();
+
+  localStorage.setItem("mellaraPromo",texto);
+
+  document.getElementById("promoStatus").textContent =
+    "Promoção salva neste navegador!";
+}
+
+if(sessionStorage.getItem("mellaraAdmLogado")==="sim"){
+  mostrarPainel();
+}
+</script>
+
+</body>
+</html>
